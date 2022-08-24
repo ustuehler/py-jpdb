@@ -1,0 +1,20 @@
+name: CI
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          python3 -m venv .venv
+          source ./.venv/bin/activate
+          export PYTHONPATH="$PWD/src"
+          export PYTHONSTARTUP="$PWD/.pythonrc"
+          python -m unittest
+        env:
+          JPDB_USERNAME: ${{ secrets.JPDB_USERNAME }}
+          JPDB_PASSWORD: ${{ secrets.JPDB_PASSWORD }}
