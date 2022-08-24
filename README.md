@@ -57,6 +57,11 @@ env JPDB_USERNAME=yourname \
     python -m unittest
 ```
 
+## Changes
+
+All notable changes in this project will be documented in the file
+[CHANGELOG.md](CHANGELOG.md).
+
 ## License
 
 [//]: # (TODO: select a license, audit, and publish the package on PyPi)
