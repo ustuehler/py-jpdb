@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.1](https://github.com/ustuehler/py-jpdb/compare/v0.1.0...v0.1.1) (2022-08-24)
+
+
+### Documentation
+
+* add link to CHANGELOG.md ([bcb1e64](https://github.com/ustuehler/py-jpdb/commit/bcb1e647b1653ff99bcf60d8a50fcd30d06833ab))
+
 ## 0.1.0 (2022-08-24)
 
 
