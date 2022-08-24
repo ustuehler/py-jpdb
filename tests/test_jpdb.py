@@ -16,6 +16,9 @@ class TestJPDB(unittest.TestCase):
     def test_login(self):
         self.assertIsNone(self.jpdb.login())
 
+    def test_due_items(self):
+        self.assertIsInstance(self.jpdb.due_items, int)
+
 
 if __name__ == '__main__':
     unittest.main()
