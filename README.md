@@ -19,6 +19,7 @@ Optionally:
 ## Features
 
 - Validation of login credentials (username & password)
+- Get the total number of due items (vocabulary and Kanji cards combined)
 
 ## Roadmap
 
