@@ -33,8 +33,10 @@ already imported:
 ```bash
 python3 -m venv .venv
 source ./.venv/bin/activate
+
 export PYTHONPATH="$PWD/src"
 export PYTHONSTARTUP="$PWD/.pythonrc"
+
 python
 ```
 
@@ -45,6 +47,7 @@ To execute all unit and integration tests:
 ```bash
 python3 -m venv .venv
 source ./.venv/bin/activate
+
 export PYTHONPATH="$PWD/src"
 export PYTHONSTARTUP="$PWD/.pythonrc"
 
