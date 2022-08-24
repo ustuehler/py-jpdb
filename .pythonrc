@@ -1,0 +1,14 @@
+#!/usr/bin/env python3
+try:
+    # noinspection PyUnresolvedReferences
+    import jpdb
+except ModuleNotFoundError:
+    import os
+    import sys
+
+    sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'src'))
+
+    # noinspection PyUnresolvedReferences
+    import jpdb
+
+print(f"Type \"help({jpdb.__name__})\" to learn about this package.")
