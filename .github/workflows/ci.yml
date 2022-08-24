@@ -9,11 +9,12 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
       - run: |
           python3 -m venv .venv
           source ./.venv/bin/activate
           export PYTHONPATH="$PWD/src"
-          export PYTHONSTARTUP="$PWD/.pythonrc"
+          pip install -r requirements.txt
           python -m unittest
         env:
           JPDB_USERNAME: ${{ secrets.JPDB_USERNAME }}
