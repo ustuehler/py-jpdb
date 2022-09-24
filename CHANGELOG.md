@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.2.0](https://github.com/ustuehler/py-jpdb/compare/v0.1.1...v0.2.0) (2022-09-24)
+
+
+### Features
+
+* support exporting the review history for all cards ([0c80a0c](https://github.com/ustuehler/py-jpdb/commit/0c80a0ca118db512bf1e707abadcd7823ad027f6))
+
+
+### Build System
+
+* fix transitive dependencies when using this library ([feab566](https://github.com/ustuehler/py-jpdb/commit/feab5663e022be8376e8dde35b79ce411982b72e))
+
+
+### Documentation
+
+* add installation and usage examples to README.md ([cc5f0cb](https://github.com/ustuehler/py-jpdb/commit/cc5f0cbe13bd9b9bda410d87be362b90f6e26509))
+
 ## [0.1.1](https://github.com/ustuehler/py-jpdb/compare/v0.1.0...v0.1.1) (2022-08-24)
 
 
