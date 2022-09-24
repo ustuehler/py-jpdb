@@ -3,7 +3,7 @@
 import mechanicalsoup
 import re
 
-import requests
+from jpdb.export.reviews import Reviews
 
 
 class JPDB:
@@ -39,7 +39,7 @@ class JPDB:
 
     def __init__(self, username: str, password: str):
         """Construct a new client for jpdb using the given credentials to
-        authenticate as a particular user, and the given ``requests`` module.
+        authenticate as a particular user.
 
         :param username: The name of an existing jpdb user account.
         :param password: The password of the existing jpdb user account.
@@ -103,18 +103,25 @@ class JPDB:
                                  self.NEW_ITEMS_PATTERN))
 
     @property
-    def reviews(self) -> dict:
-        """Return a dictionary with the exported review history. The format of
-        the export is subject to change, according to the website, but at the
-        moment it should contain separate keys for each type of card, such as
-        `cards_vocabulary_jp_en` for Japanese -> English vocabulary cards.
+    def reviews(self) -> Reviews:
+        """An export of the user's entire review history so far.
+
+        The format of the export is subject to change according to the website,
+        and not all data may be accessible through the returned object. However,
+        you can access the underlying raw data using the `data` attribute of the
+        returned object.
+
+        For example:
+
+        >>> type(jpdb.reviews.data)
+        <class 'dict'>
         """
         self._auto_login()
         url = self.BASE_URL + self.EXPORT_REVIEWS_JSON_PATH
         resp = self._browser.get(url)
         if not bool(resp):
             raise JPDBReviewsError(url, resp)
-        return resp.json()
+        return Reviews(resp.json())
 
     def _navigate_to(self, path) -> None:
         """Navigate to the given path, relative to the base URL and verify
@@ -169,7 +176,7 @@ class JPDBDueItemsError(JPDBError):
 class JPDBReviewsError(JPDBError):
     """Error raised when :class:`JPDB` is unable to export the review history.
     """
-    def __init__(self, url: str, response: requests.Response):
+    def __init__(self, url: str, response):
         super().__init__(
             f'unable to export reviews: request to {url} failed with'
             f' status code {response.status_code}')

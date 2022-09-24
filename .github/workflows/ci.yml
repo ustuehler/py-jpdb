@@ -13,7 +13,7 @@ jobs:
       - run: |
           python3 -m venv .venv
           source ./.venv/bin/activate
-          export PYTHONPATH="$PWD/src"
+          export PYTHONPATH="$PWD"
           pip install -r requirements.txt
           python -m unittest
         env:
