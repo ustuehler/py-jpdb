@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.3.0](https://github.com/ustuehler/py-jpdb/compare/v0.2.0...v0.3.0) (2022-09-24)
+
+
+### Features
+
+* return `Reviews` class from `reviews` property ([de2cf2f](https://github.com/ustuehler/py-jpdb/commit/de2cf2f82ad5ec22e856cacd9fe06962ff646fef))
+
+
+### CI/CD Workflows
+
+* use Python 3.9 since we now rely on zoneinfo ([9c0539a](https://github.com/ustuehler/py-jpdb/commit/9c0539aef64d77aa8d114c044a874a629ad4d3f2))
+
 ## [0.2.0](https://github.com/ustuehler/py-jpdb/compare/v0.1.1...v0.2.0) (2022-09-24)
 
 
