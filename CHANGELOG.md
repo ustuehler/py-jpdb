@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.1](https://github.com/ustuehler/py-jpdb/compare/v0.3.0...v0.3.1) (2022-09-24)
+
+
+### Bug Fixes
+
+* ensure that due_items returned are always up-to-date ([7d9cbcb](https://github.com/ustuehler/py-jpdb/commit/7d9cbcb6edc65d68b087f2d0cdd6e29af246418f))
+
 ## [0.3.0](https://github.com/ustuehler/py-jpdb/compare/v0.2.0...v0.3.0) (2022-09-24)
 
 
