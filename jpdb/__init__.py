@@ -117,27 +117,25 @@ class JPDB:
         <class 'dict'>
         """
         self._auto_login()
-        url = self.BASE_URL + self.EXPORT_REVIEWS_JSON_PATH
-        resp = self._browser.get(url)
+        resp = self._navigate_to(self.EXPORT_REVIEWS_JSON_PATH)
         if not bool(resp):
-            raise JPDBReviewsError(url, resp)
+            raise JPDBReviewsError(resp)
+
         return Reviews(resp.json())
 
-    def _navigate_to(self, path) -> None:
-        """Navigate to the given path, relative to the base URL and verify
-        that we didn't get redirected elsewhere.
+    def _navigate_to(self, path) -> object:
+        """Navigate to the given `path` relative to the base URL and verify
+        that we didn't get redirected elsewhere before returning the Response
+        object.
         """
         url = self.BASE_URL + path
-        if self._browser.url == url:
-            return
+        resp = self._browser.open(url)
+        if self._browser.url != url:
+            raise JPDBNavigationError(
+                actual_url=self._browser.url,
+                expected_url=url)
 
-        self._browser.open(url)
-        if self._browser.url == url:
-            return
-
-        raise JPDBNavigationError(
-            actual_url=self._browser.url,
-            expected_url=url)
+        return resp
 
     def _auto_login(self):
         """Attempt to sign in automatically, if we're not already signed in.
@@ -176,9 +174,9 @@ class JPDBDueItemsError(JPDBError):
 class JPDBReviewsError(JPDBError):
     """Error raised when :class:`JPDB` is unable to export the review history.
     """
-    def __init__(self, url: str, response):
+    def __init__(self, response):
         super().__init__(
-            f'unable to export reviews: request to {url} failed with'
+            f'unable to export reviews: request failed with'
             f' status code {response.status_code}')
 
 
@@ -189,6 +187,9 @@ class JPDBNavigationError(JPDBError):
     def __init__(self, actual_url, expected_url, message=None):
         if message:
             message += ': '
+        else:
+            message = ''
+
         super().__init__('%sexpected to navigate to %s, but landed at %s' %
                          (message, expected_url, actual_url))
 
