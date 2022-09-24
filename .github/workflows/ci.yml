@@ -10,12 +10,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - run: |
-          python3 -m venv .venv
-          source ./.venv/bin/activate
-          export PYTHONPATH="$PWD"
-          pip install -r requirements.txt
-          python -m unittest
+      - uses: actions/setup-python@v4
+        with:
+          python-version: 3.9
+          cache: 'pip'
+          cache-dependency-path: requirements.txt
+      - run: pip install -r requirements.txt
+      - run: python -m unittest
         env:
           JPDB_USERNAME: ${{ secrets.JPDB_USERNAME }}
           JPDB_PASSWORD: ${{ secrets.JPDB_PASSWORD }}
