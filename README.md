@@ -16,6 +16,34 @@ Optionally:
 - [Python 3](https://docs.python.org/3/)
 - [Active jpdb account](https://jpdb.io/login)
 
+## Installation
+
+Put the following line in `requirements.txt` or pass it as an argument to [pip](https://pip.pypa.io/en/stable/)'s `install` command:
+
+```
+git+ssh://git@github.com/ustuehler/py-jpdb@main
+```
+
+However, you _should_ specify the [latest release](https://github.com/ustuehler/py-jpdb/releases/latest) version instead of `main` and upgrade manually as needed.
+
+## Usage
+
+```python
+from jpdb import JPDB
+import os
+
+username = os.environ['JPDB_USERNAME']
+password = os.environ['JPDB_PASSWORD']
+
+jpdb = JPDB(username, password)
+
+# Ensure that credentials are valid (optional)
+jpdb.login()
+
+# Do something useful, for example:
+print(jpdb.due_items)
+```
+
 ## Features
 
 - Validation of login credentials (username & password)
