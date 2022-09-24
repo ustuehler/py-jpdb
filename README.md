@@ -57,7 +57,7 @@ print(jpdb.due_items)
 ## Development
 
 To start an interactive Python interpreter with the [jpdb](src/jpdb) package
-already imported:
+already imported and an instance of the `JPDB` class available as `jpdb`:
 
 ```bash
 python3 -m venv .venv
@@ -65,6 +65,9 @@ source ./.venv/bin/activate
 
 export PYTHONPATH="$PWD/src"
 export PYTHONSTARTUP="$PWD/.pythonrc"
+
+export JPDB_USERNAME=...
+export JPDB_PASSWORD=...
 
 python
 ```
