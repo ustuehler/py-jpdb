@@ -1,17 +1,17 @@
 #!/usr/bin/env python3
 import os
+import json
 
-try:
-    # noinspection PyUnresolvedReferences
-    from jpdb import JPDB
-except ModuleNotFoundError:
-    import sys
-
-    sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'src'))
-
-    # noinspection PyUnresolvedReferences
-    from jpdb import JPDB
+from jpdb import JPDB
+from jpdb.export.reviews import Reviews
 
 jpdb = JPDB(os.environ['JPDB_USERNAME'], os.environ['JPDB_PASSWORD'])
 
-print(f"Type \"help(jpdb)\" to learn more about the API client.")
+print(f"Type \"help(jpdb)\" to learn about the jpdb.io client.")
+
+fixtures_dir = os.path.join(os.path.dirname(__file__), 'tests', 'fixtures')
+
+with open(os.path.join(fixtures_dir, 'reviews.json')) as f:
+    reviews = Reviews(json.loads(f.read()))
+
+print(f"Type \"help(reviews)\" to learn about working with exported reviews.")
