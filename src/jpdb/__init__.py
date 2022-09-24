@@ -3,6 +3,8 @@
 import mechanicalsoup
 import re
 
+import requests
+
 
 class JPDB:
     """Experimental client for jpdb implementing a small subset of the web
@@ -13,6 +15,7 @@ class JPDB:
 
     INDEX_PATH = '/'
     LOGIN_PATH = '/login'
+    EXPORT_REVIEWS_JSON_PATH = '/export/reviews.json'
 
     # Pattern matched on the index page indicating how many due cards there are
     # for review, if any. The sentence will be continued differently, depending
@@ -76,6 +79,9 @@ class JPDB:
 
     @property
     def due_items(self) -> int:
+        """Return the current number of items due for review, regardless of
+        whether it is vocabulary cards, Kanji cards, or both which are due.
+        """
         self._auto_login()
         self._navigate_to(self.INDEX_PATH)
 
@@ -95,6 +101,20 @@ class JPDB:
                                 '(neither "%s" nor "%s")' %
                                 (self.DUE_ITEMS_PATTERN,
                                  self.NEW_ITEMS_PATTERN))
+
+    @property
+    def reviews(self) -> dict:
+        """Return a dictionary with the exported review history. The format of
+        the export is subject to change, according to the website, but at the
+        moment it should contain separate keys for each type of card, such as
+        `cards_vocabulary_jp_en` for Japanese -> English vocabulary cards.
+        """
+        self._auto_login()
+        url = self.BASE_URL + self.EXPORT_REVIEWS_JSON_PATH
+        resp = self._browser.get(url)
+        if not bool(resp):
+            raise JPDBReviewsError(url, resp)
+        return resp.json()
 
     def _navigate_to(self, path) -> None:
         """Navigate to the given path, relative to the base URL and verify
@@ -144,6 +164,15 @@ class JPDBDueItemsError(JPDBError):
     """
     def __init__(self, message):
         super().__init__(message)
+
+
+class JPDBReviewsError(JPDBError):
+    """Error raised when :class:`JPDB` is unable to export the review history.
+    """
+    def __init__(self, url: str, response: requests.Response):
+        super().__init__(
+            f'unable to export reviews: request to {url} failed with'
+            f' status code {response.status_code}')
 
 
 class JPDBNavigationError(JPDBError):

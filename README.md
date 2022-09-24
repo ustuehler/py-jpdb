@@ -46,8 +46,9 @@ print(jpdb.due_items)
 
 ## Features
 
-- Validation of login credentials (username & password)
-- Get the total number of due items (vocabulary and Kanji cards combined)
+- `login()`: Validation of login credentials (username & password)
+- `due_items`: Get the total number of due items (vocabulary and Kanji cards combined)
+- `reviews`: Export the review history for each type of card (vocabulary and Kanji, forward and reverse)
 
 ## Roadmap
 
