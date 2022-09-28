@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.3.2](https://github.com/ustuehler/py-jpdb/compare/v0.3.1...v0.3.2) (2022-09-28)
+
+
+### CI/CD Workflows
+
+* rename GitHub Actions workflows for consistency ([8d2c840](https://github.com/ustuehler/py-jpdb/commit/8d2c84033b5a919718b3274b59c8eba8f4250804))
+
+
+### Documentation
+
+* add CONTRIBUTING.md and update LICENSE, README.md ([ac60e9a](https://github.com/ustuehler/py-jpdb/commit/ac60e9a7faafe23b95d41f6bf1bddd04fbd39e1e))
+
 ## [0.3.1](https://github.com/ustuehler/py-jpdb/compare/v0.3.0...v0.3.1) (2022-09-24)
 
 
