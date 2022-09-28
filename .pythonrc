@@ -5,13 +5,16 @@ import json
 from jpdb import JPDB
 from jpdb.export.reviews import Reviews
 
-jpdb = JPDB(os.environ['JPDB_USERNAME'], os.environ['JPDB_PASSWORD'])
+if 'JPDB_USERNAME' in os.environ and 'JPDB_PASSWORD' in os.environ:
+    jpdb = JPDB(os.environ['JPDB_USERNAME'], os.environ['JPDB_PASSWORD'])
 
-print(f"Type \"help(jpdb)\" to learn about the jpdb.io client.")
+    print(f"Type \"help(jpdb)\" to explore the jpdb.io client.")
+else:
+    print(f"Type \"help(JPDB)\" to explore the jpdb.io client.")
 
 fixtures_dir = os.path.join(os.path.dirname(__file__), 'tests', 'fixtures')
 
 with open(os.path.join(fixtures_dir, 'reviews.json')) as f:
     reviews = Reviews(json.loads(f.read()))
 
-print(f"Type \"help(reviews)\" to learn about working with exported reviews.")
+print(f"Type \"help(reviews)\" to explore exported reviews.")
